@@ -71,17 +71,25 @@ final class IntegrationTests: XCTestCase {
     // MARK: skills
 
     func testSkillsAddToProjectWithInclude() async throws {
+        // Hand-written skills live in one place (e.g. an app bundle); the project is the current directory.
+        let bundle = "\(home!)/bundle"
         let project = "\(home!)/project"
-        try FileManager.default.createDirectory(atPath: "\(project)/skills/extra", withIntermediateDirectories: true)
-        try "---\nname: extra\ndescription: Hand-written.\n---\n\n# Extra\n".write(toFile: "\(project)/skills/extra/SKILL.md", atomically: true, encoding: .utf8)
-        let cli = CLI("tool", description: "Tool", sync: SyncOptions(cwd: project, include: ["skills/*"]))
+        try FileManager.default.createDirectory(atPath: "\(bundle)/skills/extra", withIntermediateDirectories: true)
+        try FileManager.default.createDirectory(atPath: project, withIntermediateDirectories: true)
+        try "---\nname: extra\ndescription: Hand-written.\n---\n\n# Extra\n".write(toFile: "\(bundle)/skills/extra/SKILL.md", atomically: true, encoding: .utf8)
+        let cli = CLI("tool", description: "Tool", sync: SyncOptions(cwd: bundle, include: ["skills/*"]))
             .command("ping", Command(description: "Ping") { _ in .ok(true) })
 
+        let previous = FileManager.default.currentDirectoryPath
+        FileManager.default.changeCurrentDirectoryPath(project)
+        defer { FileManager.default.changeCurrentDirectoryPath(previous) }
         let (output, code) = await run(cli, ["skills", "add", "--no-global"])
         XCTAssertEqual(code, 0, output)
         XCTAssertTrue(output.contains("2 skills synced"), output)
-        XCTAssertTrue(FileManager.default.fileExists(atPath: "\(project)/.agents/skills/tool-ping/SKILL.md"))
-        XCTAssertTrue(FileManager.default.fileExists(atPath: "\(project)/.agents/skills/extra/SKILL.md"))
+        let installed = URL(fileURLWithPath: project).resolvingSymlinksInPath().path + "/.agents/skills"
+        XCTAssertTrue(FileManager.default.fileExists(atPath: "\(installed)/tool-ping/SKILL.md"))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: "\(installed)/extra/SKILL.md"))
+        XCTAssertFalse(FileManager.default.fileExists(atPath: "\(bundle)/.agents"))
         XCTAssertFalse(FileManager.default.fileExists(atPath: "\(home!)/.agents/skills/tool-ping"))
     }
 
@@ -179,5 +187,22 @@ final class IntegrationTests: XCTestCase {
         XCTAssertTrue(script.contains("complete -o default -o bashdefault -o nosort -F _swiftcur_complete_demo demo"))
         let (candidates, _) = await run(cli, ["--", "demo", "us"], environment: ["COMPLETE": "bash", "_COMPLETE_INDEX": "1"])
         XCTAssertEqual(candidates, "users\u{01}\u{0B}usage")
+    }
+}
+
+extension IntegrationTests {
+    func testMcpAddResolvesBareNameThroughPath() async throws {
+        let bin = "\(home!)/bin"
+        try FileManager.default.createDirectory(atPath: bin, withIntermediateDirectories: true)
+        FileManager.default.createFile(atPath: "\(bin)/real-tool", contents: Data("#!/bin/sh\n".utf8), attributes: [.posixPermissions: 0o755])
+        try FileManager.default.createSymbolicLink(atPath: "\(bin)/tool", withDestinationPath: "\(bin)/real-tool")
+        let cli = CLI("tool").command("ping", Command { _ in .ok(true) })
+        var output = ""
+        let io = IO(stdout: { output += $0 }, stderr: { output += $0 }, isTTY: false,
+                    environment: ["HOME": home, "PATH": "/nonexistent:\(bin)"], executable: "tool", stdin: { nil })
+        let code = await cli.run(["mcp", "add", "--agent", "cursor", "--json"], io: io)
+        XCTAssertEqual(code, 0, output)
+        let real = URL(fileURLWithPath: "\(bin)/real-tool").resolvingSymlinksInPath().path
+        XCTAssertEqual(try JSONParser.parse(read(".cursor/mcp.json"))["mcpServers"]?["tool"]?["command"], .string(real))
     }
 }

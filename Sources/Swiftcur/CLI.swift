@@ -32,7 +32,7 @@ public struct Banner: @unchecked Sendable {
 public struct SyncOptions: Sendable {
     /// Text printed after the synced skills, before the suggestions.
     public var body: String?
-    /// Directory for resolving `include` patterns. Defaults to the current directory.
+    /// Directory for resolving `include` patterns. Defaults to the current directory. `--no-global` installs always go to the current directory.
     public var cwd: String?
     /// Grouping depth for skill files. Defaults to 1.
     public var depth: Int?

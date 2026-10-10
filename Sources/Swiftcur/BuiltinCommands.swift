@@ -1,7 +1,10 @@
 import Foundation
 
 extension Runtime {
-    var cwd: String { cli.sync?.cwd ?? FileManager.default.currentDirectoryPath }
+    /// Where `include` patterns are resolved.
+    var cwd: String { cli.sync?.cwd ?? projectDir }
+    /// Where `--no-global` installs go: always the current directory.
+    var projectDir: String { FileManager.default.currentDirectoryPath }
 
     /// Index of a built-in command token in argv, allowing a leading CLI name.
     private func builtinIndex(_ filtered: [String], _ builtin: String) -> Int? {
@@ -75,7 +78,7 @@ extension Runtime {
     func staleSkillsNotice(_ filtered: [String]) -> FormattedCtaBlock? {
         guard skillsEnabled, builtinIndex(filtered, "skills") == nil, builtinIndex(filtered, "mcp") == nil,
               let stored = SkillMeta.read(name, io.environment)?.hash,
-              !SkillMeta.installed(name, io.environment, cwd: cwd).isEmpty,
+              !SkillMeta.installed(name, io.environment, cwd: projectDir).isEmpty,
               skillsHash() != stored else { return nil }
         return FormattedCtaBlock(description: "Skills are out of date:",
                                  commands: [FormattedCta(command: "\(displayName) skills add", description: "sync outdated skills")])
@@ -124,7 +127,7 @@ extension Runtime {
     }
 
     private func listSkills() -> Int32 {
-        let installed = SkillMeta.installed(name, io.environment, cwd: cwd)
+        let installed = SkillMeta.installed(name, io.environment, cwd: projectDir)
         var skills: [(name: String, description: String?, installed: Bool)] = skillFiles(depth: cli.sync?.depth ?? 1).map { file in
             let meta = SkillFile.frontmatter(file.content)
             let skillName = meta.name ?? (file.dir.isEmpty ? name : file.dir)
@@ -170,10 +173,10 @@ extension Runtime {
             }
 
             let installer = SkillInstaller(environment: io.environment)
-            let result = installer.install(from: temp, global: global, cwd: cwd)
+            let result = installer.install(from: temp, global: global, cwd: projectDir)
             let current = Set(result.paths.map { ($0 as NSString).lastPathComponent })
             for old in SkillMeta.read(name, io.environment)?.skills ?? [] where !current.contains(old) {
-                installer.uninstall(old, global: global, cwd: cwd)
+                installer.uninstall(old, global: global, cwd: projectDir)
             }
             SkillMeta(hash: skillsHash(), skills: Array(current).sorted(), paths: result.paths + result.agents.map(\.path),
                       at: ISO8601DateFormatter().string(from: Date())).write(name, io.environment)
@@ -246,7 +249,7 @@ extension Runtime {
         let serverName = cli.mcp?.name ?? name
         io.stdout("Registering MCP server...")
         let result = McpRegistrar(environment: io.environment).register(
-            name: serverName, command: command ?? defaultMcpCommand(), agents: agents, global: !rest.contains("--no-global"), cwd: cwd
+            name: serverName, command: command ?? defaultMcpCommand(), agents: agents, global: !rest.contains("--no-global"), cwd: projectDir
         )
         io.stdout("\r\u{1B}[K")
         guard !result.agents.isEmpty || result.errors.isEmpty else {
@@ -268,13 +271,17 @@ extension Runtime {
     }
 
     /// The command agents run: this binary's absolute path plus `--mcp`.
+    /// GUI agents often lack the user's shell PATH, so a bare name is resolved through PATH first.
     private func defaultMcpCommand() -> String {
         let executable = io.executable ?? name
-        if executable.contains("/") {
-            let path = URL(fileURLWithPath: executable).standardizedFileURL.resolvingSymlinksInPath().path
-            return "\(shellQuote(path)) --mcp"
-        }
-        return "\(name) --mcp"
+        let path = executable.contains("/") ? executable : searchPath(executable)
+        guard let path else { return "\(name) --mcp" }
+        return "\(shellQuote(URL(fileURLWithPath: path).standardizedFileURL.resolvingSymlinksInPath().path)) --mcp"
+    }
+
+    private func searchPath(_ command: String) -> String? {
+        let directories = (io.environment["PATH"] ?? "").split(separator: ":").map(String.init)
+        return directories.map { "\($0)/\(command)" }.first { FileManager.default.isExecutableFile(atPath: $0) }
     }
 }
 
