@@ -1,0 +1,8 @@
+demo skills add — Sync skill files to agents
+
+Usage: demo skills add [options]
+
+Options:
+  --depth <number>  Grouping depth for skill files (default: 1)
+  --no-global       Install to project instead of globally
+exit=0

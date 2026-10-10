@@ -1,0 +1,5 @@
+code: VALIDATION_ERROR
+message: "Invalid input: expected string, received undefined\n\nDetails: [\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"name\"\n    ],\n    \"message\": \"Invalid input: expected string, received undefined\"\n  }\n]"
+fieldErrors[1]{code,missing,path,expected,received,message}:
+  invalid_type,true,name,string,"","Invalid input: expected string, received undefined"
+exit=1

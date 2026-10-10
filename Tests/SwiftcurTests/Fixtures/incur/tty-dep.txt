@@ -1,0 +1,7 @@
+Warning: --old is deprecated
+message: HELLO XHELLO X
+
+Suggested commands:
+  demo users list
+  demo greet <name>  # greet again
+exit=0

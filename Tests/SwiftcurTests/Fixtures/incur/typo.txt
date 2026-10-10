@@ -1,0 +1,9 @@
+code: COMMAND_NOT_FOUND
+message: 'gret' is not a command for 'demo'. Did you mean 'greet'?
+cta:
+  description: "Suggested commands:"
+  commands[2]:
+    - command: demo greet
+    - command: demo --help
+      description: see all available commands
+exit=1

@@ -1,0 +1,17 @@
+{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"test","version":"1"}}}
+{"jsonrpc":"2.0","method":"notifications/initialized"}
+{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
+{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"search_tools","arguments":{"query":"user"}}}
+{"jsonrpc":"2.0","id":4,"method":"tools/call","params":{"name":"search_tools","arguments":{"query":"","limit":2,"offset":1}}}
+{"jsonrpc":"2.0","id":5,"method":"tools/call","params":{"name":"get_tool_details","arguments":{"name":"greet"}}}
+{"jsonrpc":"2.0","id":6,"method":"tools/call","params":{"name":"get_tool_details","arguments":{"name":"nope"}}}
+{"jsonrpc":"2.0","id":7,"method":"tools/call","params":{"name":"call_read_tool","arguments":{"name":"users_list","arguments":{"limit":1}}}}
+{"jsonrpc":"2.0","id":8,"method":"tools/call","params":{"name":"call_read_tool","arguments":{"name":"greet","arguments":{"name":"x"}}}}
+{"jsonrpc":"2.0","id":9,"method":"tools/call","params":{"name":"call_write_tool","arguments":{"name":"greet","arguments":{"name":"x","loud":true}}}}
+{"jsonrpc":"2.0","id":10,"method":"tools/call","params":{"name":"call_write_tool","arguments":{"name":"users_get","arguments":{"id":2}}}}
+{"jsonrpc":"2.0","id":11,"method":"tools/call","params":{"name":"call_write_tool","arguments":{"name":"greet","arguments":{}}}}
+{"jsonrpc":"2.0","id":12,"method":"tools/call","params":{"name":"call_write_tool","arguments":{"name":"stream","arguments":{}}}}
+{"jsonrpc":"2.0","id":13,"method":"tools/call","params":{"name":"call_write_tool","arguments":{"name":"fail","arguments":{}}}}
+{"jsonrpc":"2.0","id":14,"method":"tools/call","params":{"name":"call_read_tool","arguments":{"name":"users_list","arguments":{}}}}
+{"jsonrpc":"2.0","id":15,"method":"ping"}
+{"jsonrpc":"2.0","id":16,"method":"bogus"}

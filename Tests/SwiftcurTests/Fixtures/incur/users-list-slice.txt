@@ -1,0 +1,4 @@
+users[2]{name}:
+  Alice
+  Bob
+exit=0

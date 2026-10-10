@@ -1,0 +1,4 @@
+,name}:
+  1
+[truncated: showing tokens 5–10 of 20]
+exit=0

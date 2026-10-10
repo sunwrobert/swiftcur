@@ -1,0 +1,5 @@
+^Dplain text
+
+Skills are out of date:
+  demo skills add  # sync outdated skills
+exit=0

@@ -1,0 +1,85 @@
+./demo-admin/SKILL.md
+./demo-exit42/SKILL.md
+./demo-fail/SKILL.md
+./demo-fmt/SKILL.md
+./demo-greet/SKILL.md
+./demo-guarded/SKILL.md
+./demo-page/SKILL.md
+./demo-ping/SKILL.md
+./demo-port/SKILL.md
+./demo-quiet/SKILL.md
+./demo-stream/SKILL.md
+./demo-tags/SKILL.md
+./demo-text/SKILL.md
+./demo-text2/SKILL.md
+./demo-usage/SKILL.md
+./demo-users/SKILL.md
+./demo-whoami/SKILL.md
+---
+name: demo-users
+description: Manage users. Run `demo users --help` for usage details.
+requires_bin: demo
+command: demo users
+---
+
+# demo users delete
+
+Delete a user
+
+## Arguments
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `id` | `number` | yes |  |
+
+> Confirm with the user before executing this destructive command.
+
+---
+
+# demo users get
+
+Get a user
+
+## Arguments
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `id` | `number` | yes | User ID |
+
+---
+
+# demo users list
+
+List users
+
+## Options
+
+| Flag | Type | Default | Description |
+|------|------|---------|-------------|
+| `--limit` | `number` | `10` | Max users |
+
+## Output
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `users` | `array` | yes |  |
+| `users[].id` | `number` | yes |  |
+| `users[].name` | `string` | yes |  |
+demo-admin
+demo-exit42
+demo-fail
+demo-fmt
+demo-greet
+demo-guarded
+demo-page
+demo-ping
+demo-port
+demo-quiet
+demo-stream
+demo-tags
+demo-text
+demo-text2
+demo-usage
+demo-users
+demo-whoami
+exit=0

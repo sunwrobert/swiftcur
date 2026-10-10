@@ -1,0 +1,58 @@
+tty-greet|@tty greet world
+tty-greet-missing|@tty greet
+tty-typo|@tty gret
+tty-users-get-err|@tty users get 1x
+tty-fail|@tty fail
+tty-quiet|@tty quiet
+tty-dep|@tty greet x --old y
+tty-stream|@tty stream
+tty-root|@tty
+tty-greet-cta|@tty greet bob -l
+config-greet|greet world
+config-greet-noconfig|greet world --no-config
+config-explicit|greet world --config other.json
+config-missing|greet world --config nope.json
+eq-flag|greet world --times=3
+no-flag|greet world --loud --no-loud
+stacked|greet world -lt 2
+count-stack|tags a --v --v --v
+array-opt|greet world --tag a --tag b --json
+global-after|whoami --debug
+global-noflag|whoami --no-debug
+missing-value|greet world --times
+bad-format|greet world --format xml
+filter-multi|users list --filter-output 'users[0,1],users[1,3].id'
+tok-offset|users list --token-offset 5 --token-limit 5
+full-tok|users list --full-output --token-limit 5
+full-err|fail --full-output
+full-json|greet world --full-output --json
+llms-full-json|--llms-full --format json
+llms-scoped|users --llms
+schema-json|users list --schema --json
+schema-group|users --schema
+schema-typo|gret --schema
+completions-bash|completions bash
+completions-fish|completions fish
+completions-nushell|completions nushell
+completions-help|completions
+completions-bad|completions tcsh
+complete-bash|COMPLETE=bash _COMPLETE_INDEX=2 BIN -- demo users l
+complete-enum|COMPLETE=fish BIN -- demo greet x --style ''
+complete-builtin|COMPLETE=zsh _COMPLETE_INDEX=2 BIN -- demo skills ''
+complete-nushell|COMPLETE=nushell BIN -- demo us
+skills-typo|skills ad
+mcp-typo|mcp ad
+skills-add-help|skills add --help
+mcp-add-help|mcp add --help
+mcp-doctor|mcp doctor
+yaml-greet|greet world --format yaml
+md-greet|greet world --format md
+jsonl-greet|greet world --format jsonl
+md-whoami|whoami --format md
+users-get-ok|users get 1
+users-get-cta|users get 3
+users-delete|users delete 1
+text-json|text --json
+group-help-flag|users --help
+cmd-version|--version --help
+help-cmd-schema|greet --help --schema

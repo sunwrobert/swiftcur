@@ -1,0 +1,13 @@
+#compdef demo
+_incur_complete_demo() {
+    local completions=("${(@f)$(
+        export _COMPLETE_INDEX=$(( CURRENT - 1 ))
+        export COMPLETE="zsh"
+        "demo" -- "${words[@]}" 2>/dev/null
+    )}")
+    if [[ -n $completions ]]; then
+        _describe 'values' completions -S ''
+    fi
+}
+compdef _incur_complete_demo demo
+exit=0

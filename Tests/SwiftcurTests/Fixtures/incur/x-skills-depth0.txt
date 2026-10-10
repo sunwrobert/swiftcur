@@ -1,0 +1,17 @@
+Syncing...[K  ✓ demo  Demo CLI. Run `demo --help` for usage details.
+
+1 skill synced
+
+Run demo whoami to check setup.
+
+Your agent can now use demo. Try asking:
+  "list my users"
+
+Run `demo --help` to see the full command reference.
+{
+  "skills": [
+    "/var/folders/pp/q0477_lj4mbg3b7gcjnfktyc0000gn/T/tmp.3ddLyyewRh/home/.agents/skills/demo"
+  ],
+  "body": "Run demo whoami to check setup."
+}
+exit=0

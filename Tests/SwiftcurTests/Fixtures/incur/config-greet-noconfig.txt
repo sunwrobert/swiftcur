@@ -1,0 +1,8 @@
+message: hello world
+cta:
+  description: "Suggested commands:"
+  commands[2]:
+    - command: demo users list
+    - command: demo greet <name>
+      description: greet again
+exit=0

@@ -24,16 +24,16 @@ Status key: **Port** (same behavior), **Adapt** (same goal, Swift-shaped), **Ski
 
 ## 2. Schemas and parsing
 
-incur uses Zod for every input and output. Swift has no Zod, so swiftcur uses `Codable` types plus a small field-description layer that produces both parsing and JSON Schema.
+incur uses Zod for every input and output. Swift has no Zod, so swiftcur has its own `Schema` values (`.string.optional()`) that validate input, produce Zod-identical error messages, and generate the same JSON Schema. Handlers can decode input into `Decodable` types and return `Encodable` values.
 
 | # | Feature | incur | swiftcur | Status |
 |---|---|---|---|---|
-| 2.1 | Typed positional args | `args: z.object` | `Codable` struct + `@Arg` metadata | Adapt |
-| 2.2 | Typed options | `options: z.object` | `Codable` struct + `@Option` metadata | Adapt |
-| 2.3 | Typed environment variables | `env: z.object` | `@Env` fields | Adapt |
-| 2.4 | Typed output | `output: z.object` | `Encodable` return type | Adapt |
+| 2.1 | Typed positional args | `args: z.object` | `args: Shape` of `Schema` values | Adapt |
+| 2.2 | Typed options | `options: z.object` | `options: Shape` | Adapt |
+| 2.3 | Typed environment variables | `env: z.object` | `env: Shape` | Adapt |
+| 2.4 | Typed output | `output: z.object` | `output: Schema`; handlers return `JSON` or any `Encodable` | Adapt |
 | 2.5 | Typed global options | `globals` + `globalAlias` | Same | Adapt |
-| 2.6 | Defaults, optionals, enums | Zod modifiers | Swift optionals, default values, `CaseIterable` enums | Adapt |
+| 2.6 | Defaults, optionals, enums | Zod modifiers | `.optional()`, `.default()`, `.choice()`, `.literals()`, `.min()`, `.max()`, `.coerce()` | Adapt |
 | 2.7 | `--flag value`, `--flag=value` | Yes | Yes | Port |
 | 2.8 | `--no-flag` negation | Booleans | Yes | Port |
 | 2.9 | Short aliases, stacked (`-abc`) | `alias: { saveDev: 'D' }` | Yes | Port |
@@ -46,7 +46,7 @@ incur uses Zod for every input and output. Swift has no Zod, so swiftcur uses `C
 | 2.16 | Type coercion (numbers, booleans) from strings | Yes | Yes | Port |
 | 2.17 | Validation errors with per-field details | `fieldErrors` with path, expected, received | Yes | Port |
 | 2.18 | Deprecated options | `[deprecated]` in help, warning on use | Yes | Port |
-| 2.19 | Type inference into handlers | Zod generics | Swift generics; free with `Codable` | Adapt |
+| 2.19 | Type inference into handlers | Zod generics | `context.args(as:)` decodes into any `Decodable` type | Adapt |
 
 ## 3. Running commands
 
@@ -57,10 +57,10 @@ incur uses Zod for every input and output. Swift has no Zod, so swiftcur uses `C
 | 3.3 | `ok(data, { cta })` | Success with suggested next commands | Same | Port |
 | 3.4 | `error({ code, message, hint, retryable, exitCode, cta })` | Structured failures | Same | Port |
 | 3.5 | Thrown errors become `UNKNOWN` | Yes | Swift `throws` → `UNKNOWN` | Port |
-| 3.6 | Streaming output | Async generators; one line per chunk; JSONL chunks | `AsyncThrowingStream` | Port |
+| 3.6 | Streaming output | Async generators; one line per chunk; JSONL chunks | `.stream { emitter in … }` | Port |
 | 3.7 | Async commands | Promises | `async` | Port |
 | 3.8 | Middleware | Onion-style `use(c, next)`, per-root, group, command | Same | Port |
-| 3.9 | Typed middleware variables | `vars` schema, `c.set`, `c.var` | Typed key store | Adapt |
+| 3.9 | Typed middleware variables | `vars` schema, `c.set`, `c.var` | `vars` defaults, `context.set`, `context.vars.get(_:as:)` | Adapt |
 | 3.10 | Output policy | `all` or `agent-only` (hide data from humans) | Same | Port |
 | 3.11 | Banner | Text shown before output, for humans, agents, or both | Same | Port |
 | 3.12 | Exit codes | From errors, default 1 | Same | Port |
@@ -71,9 +71,9 @@ incur uses Zod for every input and output. Swift has no Zod, so swiftcur uses `C
 
 | # | Feature | incur | swiftcur | Status |
 |---|---|---|---|---|
-| 4.1 | TOON format (default) | Token-efficient, via `@toon-format/toon` | Own encoder from the public TOON spec | Port |
-| 4.2 | JSON | Yes | `JSONSerialization` | Port |
-| 4.3 | YAML | Via `yaml` | Own minimal emitter | Port |
+| 4.1 | TOON format (default) | Token-efficient, via `@toon-format/toon` | Own encoder, matching `@toon-format/toon` 2.3.1 output | Port |
+| 4.2 | JSON | Yes | Own writer matching `JSON.stringify`, keeping key order | Port |
+| 4.3 | YAML | Via `yaml` | Own emitter matching the `yaml` package's defaults | Port |
 | 4.4 | Markdown | Tables for flat and tabular data, headings for nesting | Same | Port |
 | 4.5 | JSONL | Streaming chunks | Same | Port |
 | 4.6 | `--format`, `--json` | Global flags | Same | Port |
@@ -107,13 +107,14 @@ incur uses Zod for every input and output. Swift has no Zod, so swiftcur uses `C
 | 6.9 | Stale-skill notice | Hash of commands; warns when installed skills are out of date | Same | Port |
 | 6.10 | Post-sync text and suggested prompts | `sync.body`, `sync.suggestions` | Same | Port |
 | 6.11 | Disable generated skills | `sync: false` | Same | Port |
-| 6.12 | `mcp add` | Registers the CLI as an MCP server, via `npx add-mcp` plus direct config writes | Direct config writes only (no npx) | Adapt |
+| 6.12 | `mcp add` | Registers the CLI as an MCP server, via `npx add-mcp` plus direct config writes | Writes config for Claude Code, Cursor, Codex, Gemini CLI, Windsurf, VS Code, OpenCode, and Amp directly | Adapt |
+| 6.13 | `mcp doctor` | Starts the server in-process and lists its tools | Same | Port |
 
 ## 7. MCP server
 
 | # | Feature | incur | swiftcur | Status |
 |---|---|---|---|---|
-| 7.1 | `--mcp` stdio server | Official TS MCP SDK | Own JSON-RPC over stdio | Port |
+| 7.1 | `--mcp` stdio server | Official TS MCP SDK | Own JSON-RPC over stdio, matching the SDK's responses | Port |
 | 7.2 | Progressive discovery (default) | 4 tools: `search_tools`, `get_tool_details`, `call_read_tool`, `call_write_tool` | Same | Port |
 | 7.3 | Direct discovery | Every command is a tool | Same | Port |
 | 7.4 | Tool annotations | `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint`, `title` | Same | Port |
@@ -146,7 +147,7 @@ incur uses Zod for every input and output. Swift has no Zod, so swiftcur uses `C
 | 10.2 | `--config <path>`, `--no-config` | Configurable flag name | Same | Port |
 | 10.3 | Precedence | argv > config > schema defaults | Same | Port |
 | 10.4 | Custom loader | Non-JSON formats | Closure | Port |
-| 10.5 | Config JSON Schema generation | `incur gen` | `--config-schema` flag | Adapt |
+| 10.5 | Config JSON Schema generation | `incur gen` | `cli.configSchema()` | Adapt |
 
 ## 11. Distribution and updates
 
@@ -154,7 +155,7 @@ incur uses Zod for every input and output. Swift has no Zod, so swiftcur uses `C
 |---|---|---|---|---|
 | 11.1 | Standalone binaries | `incur build` with Bun, cross-platform | `swift build` already makes one | Skip |
 | 11.2 | GitHub release action and install scripts | Yes | Out of scope for a library | Skip (maybe later) |
-| 11.3 | Update notices and `--update` | npm/pnpm/Bun or GitHub binaries | Depends on how each app ships | Skip (maybe later) |
+| 11.3 | Update notices and `--update` | npm/pnpm/Bun or GitHub binaries | Daily background check and `--update`, using `check`/`install` closures you provide | Adapt |
 
 ## 12. Build-time tooling
 
@@ -167,18 +168,13 @@ incur uses Zod for every input and output. Swift has no Zod, so swiftcur uses `C
 
 | Status | Count |
 |---|---|
-| Port | 72 |
-| Adapt | 10 |
-| Skip | 13 |
-| **Total** | **95** |
+| Port | 73 |
+| Adapt | 11 |
+| Skip | 12 |
+| **Total** | **96** |
 
-The skipped features are the HTTP side (fetch mounting, OpenAPI, remote MCP, HTTP serving), Node packaging (Bun builds, npm updates), file-based routing, and TypeScript typegen. Everything an agent touches when it runs a local CLI is kept.
+The skipped features are the HTTP side (fetch mounting, OpenAPI, remote MCP, HTTP serving), Node packaging (Bun builds, release scripts), file-based routing, and TypeScript typegen. Everything an agent touches when it runs a local CLI is implemented.
 
-## Port order
+## Status
 
-1. **Core:** command tree, parser, run context, errors, exit codes, help, `--version`.
-2. **Output:** TOON, JSON, YAML, Markdown, JSONL, envelope, filters, token pagination.
-3. **Agents:** `--llms`, `--llms-full`, `--schema`, `skills add`, CTAs.
-4. **MCP:** stdio server, progressive and direct discovery, `mcp add`.
-5. **Extras:** completions, config-file defaults, middleware, streaming, banners.
-6. **Ferry:** move Ferry's CLI onto swiftcur.
+Every Port and Adapt row is implemented. Output parity is checked against 142 cases recorded from incur 0.7.0 (`Tests/SwiftcurTests/Fixtures`), run in-process by `swift test` and against the compiled binary by `scripts/compare.sh`.

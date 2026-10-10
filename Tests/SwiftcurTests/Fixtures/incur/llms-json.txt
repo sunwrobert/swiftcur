@@ -1,0 +1,96 @@
+{
+  "version": "incur.v1",
+  "commands": [
+    {
+      "name": "admin stats",
+      "description": "Show stats"
+    },
+    {
+      "name": "exit42",
+      "description": "Custom exit"
+    },
+    {
+      "name": "fail",
+      "description": "Always fails"
+    },
+    {
+      "name": "fmt",
+      "description": "Defaults to JSON"
+    },
+    {
+      "name": "greet",
+      "description": "Greet someone"
+    },
+    {
+      "name": "guarded",
+      "description": "Needs a token"
+    },
+    {
+      "name": "page",
+      "description": "Pages"
+    },
+    {
+      "name": "ping",
+      "description": "Ping"
+    },
+    {
+      "name": "port",
+      "description": "Needs a port"
+    },
+    {
+      "name": "quiet",
+      "description": "Agent-only output"
+    },
+    {
+      "name": "stream",
+      "description": "Stream steps"
+    },
+    {
+      "name": "tags",
+      "description": "Echo tags"
+    },
+    {
+      "name": "text",
+      "description": "Returns text"
+    },
+    {
+      "name": "text2",
+      "description": "Extra"
+    },
+    {
+      "name": "usage",
+      "description": "Custom usage"
+    },
+    {
+      "name": "users delete",
+      "description": "Delete a user"
+    },
+    {
+      "name": "users get",
+      "description": "Get a user"
+    },
+    {
+      "name": "users list",
+      "description": "List users"
+    },
+    {
+      "name": "whoami",
+      "description": "Show env and globals"
+    }
+  ],
+  "globals": {
+    "type": "object",
+    "properties": {
+      "debug": {
+        "default": false,
+        "description": "Verbose output",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "debug"
+    ],
+    "additionalProperties": false
+  }
+}
+exit=0

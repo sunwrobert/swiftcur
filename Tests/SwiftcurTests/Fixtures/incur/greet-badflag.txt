@@ -1,0 +1,3 @@
+code: UNKNOWN
+message: "Unknown flag: --nope"
+exit=1

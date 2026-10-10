@@ -1,0 +1,2 @@
+mcp-progressive|@stdin:mcp-progressive.jsonl --mcp
+mcp-direct|@stdin:mcp-direct.jsonl DEMO_DIRECT=1 --mcp

@@ -1,0 +1,8 @@
+ok: false
+error:
+  code: UNKNOWN
+  message: boom
+meta:
+  command: fail
+  duration: 4ms
+exit=1

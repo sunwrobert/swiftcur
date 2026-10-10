@@ -1,0 +1,3 @@
+users[3]{id
+[truncated: showing tokens 0–5 of 20]
+exit=0

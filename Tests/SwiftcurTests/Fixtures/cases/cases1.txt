@@ -1,0 +1,43 @@
+help|--help
+greet-help|greet --help
+users-help|users
+greet|greet world --times 2
+greet-json|greet world --json
+greet-full|greet world --full-output
+greet-loud|greet world -l
+hi|hi bob
+greet-missing|greet
+greet-badflag|greet x --nope
+greet-enum|greet x --style bad
+greet-dep|greet x --old y
+typo|gret
+users-list|users list
+users-list-md|users list --format md
+users-list-yaml|users list --format yaml
+users-list-filter|users list --filter-output users.name
+users-list-slice|users list --filter-output 'users[0,2].name'
+users-get-err|users get 2
+users-get-err-json|users get 2 --json
+stream|stream
+stream-jsonl|stream --format jsonl
+stream-json|stream --json
+fail|fail
+fail-json|fail --json
+whoami|whoami -v
+tags|tags a b c --v --v
+text|text
+quiet|quiet
+quiet-json|quiet --json
+version|--version
+llms|--llms
+llms-full|--llms-full
+llms-json|--llms --format json
+schema|greet --schema
+tokcount|users list --token-count
+toklimit|users list --token-limit 5
+completions|completions zsh
+complete|COMPLETE=zsh _COMPLETE_INDEX=1 BIN -- demo gr
+complete2|COMPLETE=fish BIN -- demo greet --st
+skills-help|skills
+mcp-help|mcp
+users-group-typo|users lst

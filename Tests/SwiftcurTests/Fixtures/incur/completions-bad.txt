@@ -1,0 +1,2 @@
+Error (INVALID_SHELL): Unknown shell 'tcsh'. Supported: bash, fish, nushell, zsh
+exit=1

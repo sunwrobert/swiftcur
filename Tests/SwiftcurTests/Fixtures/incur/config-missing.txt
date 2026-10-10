@@ -1,0 +1,3 @@
+code: UNKNOWN
+message: "Config file not found: /private/var/folders/pp/q0477_lj4mbg3b7gcjnfktyc0000gn/T/tmp.j054sNe3zu/nope.json"
+exit=1

@@ -1,0 +1,4 @@
+first: a
+rest[2]: b,c
+v: 2
+exit=0

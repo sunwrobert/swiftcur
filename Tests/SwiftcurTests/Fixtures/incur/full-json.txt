@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "data": {
+    "message": "HELLO WORLDHELLO WORLD"
+  },
+  "meta": {
+    "command": "greet",
+    "duration": "4ms",
+    "cta": {
+      "description": "Suggested commands:",
+      "commands": [
+        {
+          "command": "demo users list"
+        },
+        {
+          "command": "demo greet <name>",
+          "description": "greet again"
+        }
+      ]
+    }
+  }
+}
+exit=0

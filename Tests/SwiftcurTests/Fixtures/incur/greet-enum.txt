@@ -1,0 +1,5 @@
+code: VALIDATION_ERROR
+message: "Invalid option: expected one of \"plain\"|\"fancy\"\n\nDetails: [\n  {\n    \"code\": \"invalid_value\",\n    \"values\": [\n      \"plain\",\n      \"fancy\"\n    ],\n    \"path\": [\n      \"style\"\n    ],\n    \"message\": \"Invalid option: expected one of \\\"plain\\\"|\\\"fancy\\\"\"\n  }\n]"
+fieldErrors[1]{code,missing,path,expected,received,message}:
+  invalid_value,false,style,"","","Invalid option: expected one of \"plain\"|\"fancy\""
+exit=1

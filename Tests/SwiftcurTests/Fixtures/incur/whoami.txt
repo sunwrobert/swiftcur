@@ -1,0 +1,4 @@
+user: anon
+debug: true
+agent: true
+exit=0

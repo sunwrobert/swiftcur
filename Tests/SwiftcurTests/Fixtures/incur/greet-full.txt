@@ -1,0 +1,13 @@
+ok: true
+data:
+  message: HELLO WORLDHELLO WORLD
+meta:
+  command: greet
+  duration: 3ms
+  cta:
+    description: "Suggested commands:"
+    commands[2]:
+      - command: demo users list
+      - command: demo greet <name>
+        description: greet again
+exit=0

@@ -1,0 +1,15 @@
+{
+  "code": "VALIDATION_ERROR",
+  "message": "Invalid input: expected number, received string\n\nDetails: [\n  {\n    \"expected\": \"number\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"id\"\n    ],\n    \"message\": \"Invalid input: expected number, received string\"\n  }\n]",
+  "fieldErrors": [
+    {
+      "code": "invalid_type",
+      "missing": false,
+      "path": "id",
+      "expected": "number",
+      "received": "",
+      "message": "Invalid input: expected number, received string"
+    }
+  ]
+}
+exit=1

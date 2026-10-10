@@ -1,0 +1,25 @@
+ok: true
+toolCount: 19
+tools[19]{name,description}:
+  admin_stats,Show stats
+  exit42,Custom exit
+  fail,Always fails
+  fmt,Defaults to JSON
+  greet,Greet someone
+  guarded,Needs a token
+  page,Pages
+  ping,Ping
+  port,Needs a port
+  quiet,Agent-only output
+  stream,Stream steps
+  tags,Echo tags
+  text,Returns text
+  text2,Extra
+  usage,Custom usage
+  users_delete,Delete a user
+  users_get,Get a user
+  users_list,List users
+  whoami,Show env and globals
+warnings: []
+errors: []
+exit=0

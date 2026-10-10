@@ -1,0 +1,13 @@
+demo completions — Generate shell completion script
+
+Usage: demo completions <bash|fish|nushell|zsh>
+
+Arguments:
+  shell  Shell to generate completions for
+
+Setup:
+  bash     eval "$(demo completions bash)"  # add to ~/.bashrc
+  fish     demo completions fish | source   # add to ~/.config/fish/config.fish
+  nushell  see `demo completions nushell`   # add to config.nu
+  zsh      eval "$(demo completions zsh)"   # add to ~/.zshrc
+exit=0

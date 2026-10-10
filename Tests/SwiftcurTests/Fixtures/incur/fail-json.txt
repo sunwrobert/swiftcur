@@ -1,0 +1,5 @@
+{
+  "code": "UNKNOWN",
+  "message": "boom"
+}
+exit=1

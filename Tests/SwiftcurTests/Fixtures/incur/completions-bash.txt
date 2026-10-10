@@ -1,0 +1,29 @@
+_incur_complete_demo() {
+    local IFS=$'\013'
+    local _COMPLETE_INDEX=${COMP_CWORD}
+    local _completions
+    _completions=( $(
+        export COMPLETE="bash"
+        export _COMPLETE_INDEX="$_COMPLETE_INDEX"
+        "demo" -- "${COMP_WORDS[@]}"
+    ) )
+    if [[ $? != 0 ]]; then
+        unset COMPREPLY
+        return
+    fi
+    local _nospace=false
+    COMPREPLY=()
+    for _c in "${_completions[@]}"; do
+        if [[ "$_c" == *$'\001' ]]; then
+            _nospace=true
+            COMPREPLY+=("${_c%$'\001'}")
+        else
+            COMPREPLY+=("$_c")
+        fi
+    done
+    if [[ $_nospace == true ]]; then
+        compopt -o nospace
+    fi
+}
+complete -o default -o bashdefault -o nosort -F _incur_complete_demo demo
+exit=0

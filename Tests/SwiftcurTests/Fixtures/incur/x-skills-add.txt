@@ -1,0 +1,27 @@
+Syncing...[K  ✓ demo-admin    Admin tools. Run `demo admin --help` for usage details.
+  ✓ demo-exit42   Custom exit. Run `demo exit42 --help` for usage details.
+  ✓ demo-fail     Always fails. Run `demo fail --help` for usage details.
+  ✓ demo-fmt      Defaults to JSON. Run `demo fmt --help` for usage details.
+  ✓ demo-greet    Greet someone. Run `demo greet --help` for usage details.
+  ✓ demo-guarded  Needs a token. Run `demo guarded --help` for usage details.
+  ✓ demo-page     Pages. Run `demo page --help` for usage details.
+  ✓ demo-ping     Ping. Run `demo ping --help` for usage details.
+  ✓ demo-port     Needs a port. Run `demo port --help` for usage details.
+  ✓ demo-quiet    Agent-only output. Run `demo quiet --help` for usage details.
+  ✓ demo-stream   Stream steps. Run `demo stream --help` for usage details.
+  ✓ demo-tags     Echo tags. Run `demo tags --help` for usage details.
+  ✓ demo-text     Returns text. Run `demo text --help` for usage details.
+  ✓ demo-text2    Extra. Run `demo text2 --help` for usage details.
+  ✓ demo-usage    Custom usage. Run `demo usage --help` for usage details.
+  ✓ demo-users    Manage users. Run `demo users --help` for usage details.
+  ✓ demo-whoami   Show env and globals. Run `demo whoami --help` for usage details.
+
+17 skills synced
+
+Run demo whoami to check setup.
+
+Your agent can now use demo. Try asking:
+  "list my users"
+
+Run `demo --help` to see the full command reference.
+exit=0

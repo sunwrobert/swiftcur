@@ -1,0 +1,10 @@
+./demo/SKILL.md
+---
+name: demo
+description: Demo CLI. Run `demo --help` for usage details.
+requires_bin: demo
+command: demo
+---
+
+# demo admin stats
+exit=0

@@ -1,0 +1,9 @@
+code: COMMAND_NOT_FOUND
+message: 'lst' is not a command for 'demo users'. Did you mean 'list'?
+cta:
+  description: "Suggested commands:"
+  commands[2]:
+    - command: demo users list
+    - command: demo users --help
+      description: see all available commands
+exit=1

@@ -1,0 +1,3 @@
+file: a.txt
+stdin: true
+exit=0

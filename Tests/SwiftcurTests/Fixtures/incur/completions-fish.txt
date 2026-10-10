@@ -1,0 +1,3 @@
+complete --keep-order --exclusive --command demo \
+    --arguments "(COMPLETE=fish demo -- (commandline --current-process --tokenize --cut-at-cursor) (commandline --current-token))"
+exit=0

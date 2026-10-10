@@ -1,0 +1,2 @@
+{"message":"HELLO WORLDHELLO WORLD","cta":{"description":"Suggested commands:","commands":[{"command":"demo users list"},{"command":"demo greet <name>","description":"greet again"}]}}
+exit=0

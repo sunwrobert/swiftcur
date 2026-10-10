@@ -1,0 +1,6 @@
+message: HELLO WORLDHELLO WORLD
+
+Suggested commands:
+  demo users list
+  demo greet <name>  # greet again
+exit=0

@@ -1,0 +1,28 @@
+# demo
+
+Demo CLI
+
+| Command | Description |
+|---------|-------------|
+| `demo admin stats` | Show stats |
+| `demo exit42` | Custom exit |
+| `demo fail` | Always fails |
+| `demo fmt` | Defaults to JSON |
+| `demo greet <name>` | Greet someone |
+| `demo guarded` | Needs a token |
+| `demo page` | Pages |
+| `demo ping` | Ping |
+| `demo port` | Needs a port |
+| `demo quiet` | Agent-only output |
+| `demo stream` | Stream steps |
+| `demo tags <first> [rest...]` | Echo tags |
+| `demo text` | Returns text |
+| `demo text2` | Extra |
+| `demo usage [file]` | Custom usage |
+| `demo users delete <id>` | Delete a user |
+| `demo users get <id>` | Get a user |
+| `demo users list` | List users |
+| `demo whoami` | Show env and globals |
+
+Run `demo --llms-full` for full manifest. Run `demo <command> --schema` for argument details.
+exit=0

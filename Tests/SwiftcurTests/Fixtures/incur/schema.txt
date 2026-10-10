@@ -1,0 +1,52 @@
+args:
+  type: object
+  properties:
+    name:
+      type: string
+      description: Name to greet
+  required[1]: name
+  additionalProperties: false
+options:
+  type: object
+  properties:
+    loud:
+      default: false
+      description: Shout
+      type: boolean
+    times:
+      default: 1
+      description: Repeat count
+      type: number
+    style:
+      description: Style
+      type: string
+      enum[2]: plain,fancy
+    old:
+      description: Old flag
+      deprecated: true
+      type: string
+    tag:
+      default: []
+      description: Tags
+      type: array
+      items:
+        type: string
+  required[3]: loud,times,tag
+  additionalProperties: false
+output:
+  type: object
+  properties:
+    message:
+      type: string
+  required[1]: message
+  additionalProperties: false
+globals:
+  type: object
+  properties:
+    debug:
+      default: false
+      description: Verbose output
+      type: boolean
+  required[1]: debug
+  additionalProperties: false
+exit=0

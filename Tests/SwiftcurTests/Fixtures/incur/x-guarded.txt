@@ -1,0 +1,7 @@
+code: AUTH
+message: token required
+cta:
+  description: "Suggested command:"
+  commands[1]{command}:
+    demo whoami
+exit=1

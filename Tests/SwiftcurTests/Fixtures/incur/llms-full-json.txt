@@ -1,0 +1,355 @@
+{
+  "version": "incur.v1",
+  "commands": [
+    {
+      "name": "admin stats",
+      "description": "Show stats"
+    },
+    {
+      "name": "exit42",
+      "description": "Custom exit"
+    },
+    {
+      "name": "fail",
+      "description": "Always fails"
+    },
+    {
+      "name": "fmt",
+      "description": "Defaults to JSON"
+    },
+    {
+      "name": "greet",
+      "description": "Greet someone",
+      "schema": {
+        "args": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name to greet"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "additionalProperties": false
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "loud": {
+              "default": false,
+              "description": "Shout",
+              "type": "boolean"
+            },
+            "times": {
+              "default": 1,
+              "description": "Repeat count",
+              "type": "number"
+            },
+            "style": {
+              "description": "Style",
+              "type": "string",
+              "enum": [
+                "plain",
+                "fancy"
+              ]
+            },
+            "old": {
+              "description": "Old flag",
+              "deprecated": true,
+              "type": "string"
+            },
+            "tag": {
+              "default": [],
+              "description": "Tags",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "loud",
+            "times",
+            "tag"
+          ],
+          "additionalProperties": false
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "message"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "examples": [
+        {
+          "command": "greet world",
+          "description": "Greet the world"
+        },
+        {
+          "command": "greet bob --loud true"
+        }
+      ]
+    },
+    {
+      "name": "guarded",
+      "description": "Needs a token"
+    },
+    {
+      "name": "page",
+      "description": "Pages",
+      "schema": {
+        "options": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "default": 1,
+              "description": "Page",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "page"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "name": "ping",
+      "description": "Ping"
+    },
+    {
+      "name": "port",
+      "description": "Needs a port",
+      "schema": {
+        "env": {
+          "type": "object",
+          "properties": {
+            "DEMO_PORT": {
+              "type": "number",
+              "description": "Port number"
+            }
+          },
+          "required": [
+            "DEMO_PORT"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "name": "quiet",
+      "description": "Agent-only output"
+    },
+    {
+      "name": "stream",
+      "description": "Stream steps"
+    },
+    {
+      "name": "tags",
+      "description": "Echo tags",
+      "schema": {
+        "args": {
+          "type": "object",
+          "properties": {
+            "first": {
+              "type": "string"
+            },
+            "rest": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "first"
+          ],
+          "additionalProperties": false
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "v": {
+              "default": 0,
+              "count": true,
+              "description": "Verbosity",
+              "type": "number"
+            }
+          },
+          "required": [
+            "v"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "name": "text",
+      "description": "Returns text"
+    },
+    {
+      "name": "text2",
+      "description": "Extra"
+    },
+    {
+      "name": "usage",
+      "description": "Custom usage",
+      "schema": {
+        "args": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "stdin": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "stdin"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "name": "users delete",
+      "description": "Delete a user",
+      "schema": {
+        "args": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "name": "users get",
+      "description": "Get a user",
+      "schema": {
+        "args": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "description": "User ID"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "name": "users list",
+      "description": "List users",
+      "schema": {
+        "options": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "default": 10,
+              "description": "Max users",
+              "type": "number"
+            }
+          },
+          "required": [
+            "limit"
+          ],
+          "additionalProperties": false
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "users": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "users"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "name": "whoami",
+      "description": "Show env and globals",
+      "schema": {
+        "env": {
+          "type": "object",
+          "properties": {
+            "DEMO_USER": {
+              "default": "anon",
+              "description": "User name",
+              "type": "string"
+            }
+          },
+          "required": [
+            "DEMO_USER"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "globals": {
+    "type": "object",
+    "properties": {
+      "debug": {
+        "default": false,
+        "description": "Verbose output",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "debug"
+    ],
+    "additionalProperties": false
+  }
+}
+exit=0

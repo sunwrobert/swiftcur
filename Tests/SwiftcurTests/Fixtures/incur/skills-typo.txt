@@ -1,0 +1,9 @@
+code: COMMAND_NOT_FOUND
+message: 'ad' is not a command for 'demo skills'. Did you mean 'add'?
+cta:
+  description: "Suggested commands:"
+  commands[2]:
+    - command: demo skills add
+    - command: demo skills --help
+      description: see all available commands
+exit=1

@@ -1,0 +1,59 @@
+{
+  "options": {
+    "type": "object",
+    "properties": {
+      "limit": {
+        "default": 10,
+        "description": "Max users",
+        "type": "number"
+      }
+    },
+    "required": [
+      "limit"
+    ],
+    "additionalProperties": false
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "users": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "users"
+    ],
+    "additionalProperties": false
+  },
+  "globals": {
+    "type": "object",
+    "properties": {
+      "debug": {
+        "default": false,
+        "description": "Verbose output",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "debug"
+    ],
+    "additionalProperties": false
+  }
+}
+exit=0

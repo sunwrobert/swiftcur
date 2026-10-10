@@ -1,0 +1,6 @@
+# External completer for demo
+# Add to $env.config.completions.external.completer or use in a dispatch completer.
+let _incur_complete_demo = {|spans|
+    COMPLETE=nushell demo -- ...$spans | from json
+}
+exit=0

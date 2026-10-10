@@ -1,0 +1,2 @@
+Error: 'gret' is not a command for 'demo'. Did you mean 'greet'?
+exit=1

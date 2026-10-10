@@ -1,0 +1,7 @@
+ok: true
+data: "users[3]{id\n[truncated: showing tokens 0–5 of 20]"
+meta:
+  command: users list
+  duration: 4ms
+  nextOffset: 5
+exit=0

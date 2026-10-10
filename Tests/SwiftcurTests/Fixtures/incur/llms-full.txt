@@ -1,0 +1,220 @@
+# demo
+
+## demo admin
+
+Admin tools
+
+### demo admin stats
+
+Show stats
+
+## demo exit42
+
+### demo exit42
+
+Custom exit
+
+## demo fail
+
+### demo fail
+
+Always fails
+
+## demo fmt
+
+### demo fmt
+
+Defaults to JSON
+
+## demo greet
+
+### demo greet
+
+Greet someone
+
+#### Arguments
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `name` | `string` | yes | Name to greet |
+
+#### Options
+
+| Flag | Type | Default | Description |
+|------|------|---------|-------------|
+| `--loud` | `boolean` | `false` | Shout |
+| `--times` | `number` | `1` | Repeat count |
+| `--style` | `string` |  | Style |
+| `--old` | `string` |  | **Deprecated.** Old flag |
+| `--tag` | `array` |  | Tags |
+
+#### Output
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `message` | `string` | yes |  |
+
+#### Examples
+
+```sh
+# Greet the world
+demo greet world
+
+demo greet bob --loud true
+```
+
+> Names are case-sensitive.
+
+## demo guarded
+
+### demo guarded
+
+Needs a token
+
+## demo page
+
+### demo page
+
+Pages
+
+#### Options
+
+| Flag | Type | Default | Description |
+|------|------|---------|-------------|
+| `--page` | `number` | `1` | Page |
+
+## demo ping
+
+### demo ping
+
+Ping
+
+## demo port
+
+### demo port
+
+Needs a port
+
+#### Environment Variables
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `DEMO_PORT` | `number` | yes |  | Port number |
+
+## demo quiet
+
+### demo quiet
+
+Agent-only output
+
+## demo stream
+
+### demo stream
+
+Stream steps
+
+## demo tags
+
+### demo tags
+
+Echo tags
+
+#### Arguments
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `first` | `string` | yes |  |
+| `rest` | `array` | no |  |
+
+#### Options
+
+| Flag | Type | Default | Description |
+|------|------|---------|-------------|
+| `--v` | `number` | `0` | Verbosity |
+
+## demo text
+
+### demo text
+
+Returns text
+
+## demo text2
+
+### demo text2
+
+Extra
+
+## demo usage
+
+### demo usage
+
+Custom usage
+
+#### Arguments
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `file` | `string` | no |  |
+
+#### Options
+
+| Flag | Type | Default | Description |
+|------|------|---------|-------------|
+| `--stdin` | `boolean` | `false` |  |
+
+## demo users
+
+Manage users
+
+### demo users delete
+
+Delete a user
+
+#### Arguments
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `id` | `number` | yes |  |
+
+> Confirm with the user before executing this destructive command.
+
+### demo users get
+
+Get a user
+
+#### Arguments
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `id` | `number` | yes | User ID |
+
+### demo users list
+
+List users
+
+#### Options
+
+| Flag | Type | Default | Description |
+|------|------|---------|-------------|
+| `--limit` | `number` | `10` | Max users |
+
+#### Output
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `users` | `array` | yes |  |
+| `users[].id` | `number` | yes |  |
+| `users[].name` | `string` | yes |  |
+
+## demo whoami
+
+### demo whoami
+
+Show env and globals
+
+#### Environment Variables
+
+| Name | Type | Required | Default | Description |
+|------|------|----------|---------|-------------|
+| `DEMO_USER` | `string` | yes | `anon` | User name |
+exit=0

@@ -1,0 +1,4 @@
+{"type":"chunk","data":{"step":1}}
+{"type":"chunk","data":{"step":2}}
+{"type":"done","ok":true,"meta":{"command":"stream","duration":"4ms"}}
+exit=0

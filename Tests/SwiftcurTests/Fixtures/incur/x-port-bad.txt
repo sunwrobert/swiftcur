@@ -1,0 +1,5 @@
+code: VALIDATION_ERROR
+message: "Invalid input: expected number, received NaN\n\nDetails: [\n  {\n    \"expected\": \"number\",\n    \"code\": \"invalid_type\",\n    \"received\": \"NaN\",\n    \"path\": [\n      \"DEMO_PORT\"\n    ],\n    \"message\": \"Invalid input: expected number, received NaN\"\n  }\n]"
+fieldErrors[1]{code,missing,path,expected,received,message}:
+  invalid_type,false,DEMO_PORT,number,NaN,"Invalid input: expected number, received NaN"
+exit=1

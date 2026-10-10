@@ -1,0 +1,20 @@
+greet:Greet someone
+users:Manage users
+stream:Stream steps
+fail:Always fails
+whoami:Show env and globals
+tags:Echo tags
+text2:Extra
+text:Returns text
+quiet:Agent-only output
+guarded:Needs a token
+exit42:Custom exit
+ping:Ping
+admin:Admin tools
+fmt:Defaults to JSON
+port:Needs a port
+usage:Custom usage
+page:Pages
+add:Sync skill files to agents
+list:List skills
+ls:List skillsexit=0

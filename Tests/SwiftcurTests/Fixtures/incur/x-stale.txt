@@ -1,0 +1,6 @@
+data: plain text
+cta:
+  description: "Skills are out of date:"
+  commands[1]{command,description}:
+    demo skills add,sync outdated skills
+exit=0

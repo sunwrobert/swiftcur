@@ -1,0 +1,12 @@
+# demo users
+
+Manage users
+
+| Command | Description |
+|---------|-------------|
+| `demo users delete <id>` | Delete a user |
+| `demo users get <id>` | Get a user |
+| `demo users list` | List users |
+
+Run `demo users --llms-full` for full manifest. Run `demo users <command> --schema` for argument details.
+exit=0

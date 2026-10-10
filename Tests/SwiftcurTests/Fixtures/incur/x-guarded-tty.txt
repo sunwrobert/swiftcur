@@ -1,0 +1,5 @@
+Error (AUTH): token required
+
+Suggested command:
+  demo whoami
+exit=1

@@ -1,0 +1,2 @@
+pong: true
+exit=0

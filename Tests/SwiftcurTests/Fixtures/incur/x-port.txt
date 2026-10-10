@@ -1,0 +1,5 @@
+code: VALIDATION_ERROR
+message: "Invalid input: expected number, received undefined\n\nDetails: [\n  {\n    \"expected\": \"number\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"DEMO_PORT\"\n    ],\n    \"message\": \"Invalid input: expected number, received undefined\"\n  }\n]"
+fieldErrors[1]{code,missing,path,expected,received,message}:
+  invalid_type,true,DEMO_PORT,number,"","Invalid input: expected number, received undefined"
+exit=1

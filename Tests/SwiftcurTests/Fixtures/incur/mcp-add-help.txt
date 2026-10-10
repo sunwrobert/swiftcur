@@ -1,0 +1,9 @@
+demo mcp add — Register as MCP server
+
+Usage: demo mcp add [options]
+
+Options:
+  --agent <string>        Target a specific agent (e.g. claude-code, cursor)
+  --command, -c <string>  Override the command agents will run (e.g. "pnpm my-cli --mcp")
+  --no-global             Install to project instead of globally
+exit=0

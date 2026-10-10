@@ -1,0 +1,4 @@
+code: CUSTOM
+message: custom failure
+retryable: true
+exit=42

@@ -1,0 +1,15 @@
+## message
+
+HELLO WORLDHELLO WORLD
+
+## cta.description
+
+Suggested commands:
+
+## cta.commands
+
+| command           | description |
+|-------------------|-------------|
+| demo users list   |             |
+| demo greet <name> | greet again |
+exit=0

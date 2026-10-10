@@ -1,0 +1,5 @@
+code: VALIDATION_ERROR
+message: "Invalid input: expected int, received number\n\nDetails: [\n  {\n    \"expected\": \"int\",\n    \"format\": \"safeint\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"page\"\n    ],\n    \"message\": \"Invalid input: expected int, received number\"\n  }\n]"
+fieldErrors[1]{code,missing,path,expected,received,message}:
+  invalid_type,false,page,int,"","Invalid input: expected int, received number"
+exit=1

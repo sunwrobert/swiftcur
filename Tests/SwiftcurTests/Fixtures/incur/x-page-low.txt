@@ -1,0 +1,5 @@
+code: VALIDATION_ERROR
+message: "Too small: expected number to be >=1\n\nDetails: [\n  {\n    \"origin\": \"number\",\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"inclusive\": true,\n    \"path\": [\n      \"page\"\n    ],\n    \"message\": \"Too small: expected number to be >=1\"\n  }\n]"
+fieldErrors[1]{code,missing,path,expected,received,message}:
+  too_small,false,page,"","","Too small: expected number to be >=1"
+exit=1

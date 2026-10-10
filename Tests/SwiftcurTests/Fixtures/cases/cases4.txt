@@ -1,0 +1,39 @@
+x-guarded|guarded
+x-guarded-token|DEMO_TOKEN=abc BIN guarded
+x-guarded-tty|@tty guarded
+x-whoami-var|whoami
+x-exit42|exit42
+x-exit42-tty|@tty exit42
+x-ping|ping
+x-ping-help|ping --help
+x-admin|admin
+x-admin-stats|admin stats
+x-admin-stats-tty|@tty admin stats
+x-admin-stats-json-tty|@tty admin stats --json
+x-fmt|fmt
+x-fmt-toon|fmt --format toon
+x-port|port
+x-port-tty|@tty port
+x-port-bad|DEMO_PORT=abc BIN port
+x-port-ok|DEMO_PORT=8080 BIN port
+x-port-help|DEMO_PORT=123456 BIN port --help
+x-usage-help|usage --help
+x-usage|usage a.txt --stdin
+x-page|page --page 1.5
+x-page-low|page --page 0
+x-page-tty|@tty page --page 0
+x-tty-root|@tty
+x-tty-help|@tty --help
+x-help|--help
+x-llms|--llms
+x-mcp-doctor|mcp doctor
+x-skills-add|skills add
+x-skills-tree|@sh cd home/.agents/skills && find . -type f | sort && cat demo-users/SKILL.md && cat demo/SKILL.md 2>/dev/null; ls
+x-skills-list|skills list
+x-stale-none|text
+x-stale|DEMO_EXTRA=1 BIN text
+x-stale-tty|@sh DEMO_EXTRA=1 script -q /dev/null BIN text < /dev/null | tr -d '\r'
+x-skills-claude|@sh mkdir -p home/.claude && BIN skills add > /dev/null && readlink home/.claude/skills/demo-users && ls home/.claude/skills | sort
+x-skills-depth0|skills add --depth 0 --json
+x-skills-tree0|@sh cd home/.agents/skills && find . -type f | sort && head -8 demo/SKILL.md
+x-skills-ls|skills ls

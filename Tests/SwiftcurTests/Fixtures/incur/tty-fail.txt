@@ -1,0 +1,2 @@
+Error: boom
+exit=1

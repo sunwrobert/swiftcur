@@ -1,0 +1,3 @@
+code: UNKNOWN
+message: "Invalid format: \"xml\". Expected one of: toon, json, yaml, md, jsonl"
+exit=1

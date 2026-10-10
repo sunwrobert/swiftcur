@@ -1,0 +1,48 @@
+DEMO BANNER
+demo@1.2.3 — Demo CLI
+
+Usage: demo <command>
+
+Commands:
+  admin    Admin tools
+  exit42   Custom exit
+  fail     Always fails
+  fmt      Defaults to JSON
+  greet    Greet someone
+  guarded  Needs a token
+  page     Pages
+  ping     Ping
+  port     Needs a port
+  quiet    Agent-only output
+  stream   Stream steps
+  tags     Echo tags
+  text     Returns text
+  text2    Extra
+  usage    Custom usage
+  users    Manage users
+  whoami   Show env and globals
+
+Integrations:
+  completions  Generate shell completion script
+  mcp          Register as MCP server (add, doctor)
+  skills       Sync skill files to agents (add, list)
+
+Custom Global Options:
+  --debug, -v  Verbose output
+
+Global Options:
+  --config <path>                     Load JSON option defaults from a file
+  --filter-output <keys>              Filter output by key paths (e.g. foo,bar.baz,a[0,3])
+  --format <toon|json|yaml|md|jsonl>  Output format
+  --full-output                       Show full output envelope
+  --help                              Show help
+  --llms, --llms-full                 Print LLM-readable manifest
+  --mcp                               Start as MCP stdio server
+  --no-config                         Disable JSON option defaults for this run
+  --schema                            Show JSON Schema for command
+  --token-count                       Print token count of output (instead of output)
+  --token-limit <n>                   Limit output to n tokens
+  --token-offset <n>                  Skip first n tokens of output
+  --update                            Update to latest version
+  --version                           Show version
+exit=0

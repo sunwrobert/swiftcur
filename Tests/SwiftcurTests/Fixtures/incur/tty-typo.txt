@@ -1,0 +1,6 @@
+Error: 'gret' is not a command for 'demo'. Did you mean 'greet'?
+
+Suggested commands:
+  demo greet
+  demo --help  # see all available commands
+exit=1
